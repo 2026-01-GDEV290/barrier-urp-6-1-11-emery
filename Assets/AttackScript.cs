@@ -1,17 +1,23 @@
+using System.Collections;
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
+    [SerializeField]
+    Animator anim;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    float speed;
+    public void stutterFrame()
     {
-        
+        Debug.Log("stutterFrame");
+        speed = anim.speed;
+        anim.speed = -1;
+        StartCoroutine(restartFrame());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator restartFrame()
     {
-
+        yield return new WaitForSeconds(1f);
+        anim.speed = speed; 
     }
 }
