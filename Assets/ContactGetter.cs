@@ -44,10 +44,10 @@ public class ContactGetter : MonoBehaviour
 
         AttackScript anim;
 
-        if (!(other.gameObject.GetComponent<AttackScript>().IsUnityNull()))
+        if (!(playerSword.gameObject.GetComponent<AttackScript>() == null))
         {
             Debug.Log("got ATK scrpt");
-            anim = other.gameObject.GetComponent<AttackScript>();
+            anim = playerSword.gameObject.GetComponent<AttackScript>();
             anim.stutterFrame();
         }
 
