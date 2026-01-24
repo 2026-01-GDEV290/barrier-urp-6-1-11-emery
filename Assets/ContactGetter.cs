@@ -1,10 +1,16 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class ContactGetter : MonoBehaviour
 {
-    int HP = 6;
+    [SerializeField]
+    float shakeIntensity;
+    [SerializeField]
+    float shakeTime;
+
+    int HP = 3;
     [SerializeField]
     GameObject brokenSelf;
     GameObject current;
@@ -27,9 +33,25 @@ public class ContactGetter : MonoBehaviour
     [SerializeField]
     GameObject playerSword;
 
+    [SerializeField]
+    AttackScript playerAtk;
+
+    [SerializeField]
+    CinemachineShake cinemachineShake;
+
+    [SerializeField]
+    List<GameObject> Decals;
+
+    [SerializeField]
+    GameObject DecalProj;
+
     private void Start()
     {
         playerSword = GameObject.FindGameObjectWithTag("PlayerSword");
+
+        playerAtk = GameObject.FindGameObjectWithTag("PlayerMain").GetComponent<AttackScript>();
+
+        cinemachineShake = GameObject.FindGameObjectWithTag("Camera").GetComponent<CinemachineShake>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,10 +59,6 @@ public class ContactGetter : MonoBehaviour
         HP--;
         sourceHit.pitch = Random.Range(1,1.5f);
         sourceHit.Play();
-
-        hitParticle.transform.position = Physics.ClosestPoint(playerSword.transform.position, myCollider, transform.position, transform.rotation);
-
-        hitParticle.Play();
 
         AttackScript anim;
 
@@ -51,11 +69,18 @@ public class ContactGetter : MonoBehaviour
             anim.stutterFrame();
         }
 
-       
+        GameObject newDecal = Instantiate(DecalProj,transform.position,Quaternion.identity);
+
+        newDecal.transform.position = Physics.ClosestPoint(playerSword.transform.position, myCollider, transform.position, transform.rotation);
+
+        Vector3 direction = transform.position - newDecal.transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        newDecal.transform.rotation = rotation;
+
+        Decals.Add(newDecal);
 
         if (HP <= 0)
         {
-            gameObject.GetComponent<Collider>().enabled = false;
             current = Instantiate(brokenSelf, transform.position, Quaternion.identity);
             myCollider.enabled = false;
             foreach (MeshRenderer part in parts)
@@ -64,20 +89,30 @@ public class ContactGetter : MonoBehaviour
                 sourceBreak.pitch = Random.Range(1,1.5f);
                 sourceBreak.Play();
             }
+            foreach (GameObject decal in Decals)
+            {
+                Destroy(decal);
+            }
             Invoke("Refresh", 3f);
         }
+
+        hitParticle.transform.position = Physics.ClosestPoint(playerSword.transform.position, myCollider, transform.position, transform.rotation);
+
+        hitParticle.Play();
+
+        cinemachineShake.ShakeCamera(shakeIntensity, shakeTime);
     }
 
     void Refresh()
     {
         myCollider.enabled = true;
-        gameObject.GetComponent<Collider>().enabled = true;
         Destroy(current); 
         foreach (MeshRenderer part in parts)
         {
             part.enabled = true;
 
         }
-        HP = 6;
+
+        HP = 3;
     }
 }
