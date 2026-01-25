@@ -83,7 +83,7 @@ public class ContactGetter : MonoBehaviour
                 Destroy(decal);
             }
             playerAtk.stutterFrame(1.5f);
-            Invoke("Refresh", 3f);
+            Invoke("Refresh", 10f);
         }
         else
         {

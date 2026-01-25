@@ -337,17 +337,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 87b30f0eec538d146a99065770f5ae4a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.339
+      value: -0.535459
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 87b30f0eec538d146a99065770f5ae4a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000047683716
+      value: 0.92250067
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 87b30f0eec538d146a99065770f5ae4a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.938
+      value: 4.743924
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 87b30f0eec538d146a99065770f5ae4a,
         type: 3}
@@ -398,7 +398,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: e35abb39778c95f44a5f7145ccde15f1, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b8bddaec9e9b084ebce2dc2ee466349, type: 2}
     - target: {fileID: -3429296821425308918, guid: 87b30f0eec538d146a99065770f5ae4a,
         type: 3}
       propertyPath: m_Layer
@@ -9088,7 +9088,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 70
+  m_VersionIndex: 79
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -9851,7 +9851,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 74
+  m_VersionIndex: 83
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -9894,7 +9894,6 @@ MonoBehaviour:
   myCollider: {fileID: 7076828323641099563}
   playerSword: {fileID: 0}
   playerAtk: {fileID: 0}
-  cinemachineShake: {fileID: 0}
   Decals: []
   DecalProj: {fileID: 941300139321356902, guid: a71990eb238717e479aebf3e9f5a17d0,
     type: 3}
