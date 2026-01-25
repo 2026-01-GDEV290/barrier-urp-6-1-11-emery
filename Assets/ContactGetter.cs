@@ -52,7 +52,7 @@ public class ContactGetter : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         HP--;
-        sourceHit.pitch = Random.Range(1,1.5f);
+        sourceBreak.pitch = Random.Range(0.15f, 0.3f);
         sourceHit.Play();
 
         
@@ -75,7 +75,7 @@ public class ContactGetter : MonoBehaviour
             foreach (MeshRenderer part in parts)
             {
                 part.enabled = false;
-                sourceBreak.pitch = Random.Range(0.15f, 0.5f);
+                sourceBreak.pitch = Random.Range(0.15f, 0.3f);
                 sourceBreak.Play();
             }
             foreach (GameObject decal in Decals)

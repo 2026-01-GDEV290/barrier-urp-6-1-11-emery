@@ -25,6 +25,9 @@ public class ThirdPersonController : MonoBehaviour
     bool attacking = false;
     public string lastState;
 
+    [SerializeField]
+    GameObject WalkingSource;
+
     float yPos;
 
     private void Start()
@@ -34,6 +37,7 @@ public class ThirdPersonController : MonoBehaviour
     }
     private void Update()
     {
+
         controller.transform.position = new Vector3(controller.transform.position.x, yPos, controller.transform.position.z);
 
         float Horizontal = Input.GetAxisRaw("Horizontal");
@@ -53,10 +57,13 @@ public class ThirdPersonController : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
+
+            WalkingSource.SetActive(true);
         }
         else
         {
             anim.SetBool("Walking", false);
+            WalkingSource.SetActive(false);
         }
         
         if (Input.GetKeyDown(KeyCode.Mouse0))

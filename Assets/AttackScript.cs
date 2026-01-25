@@ -23,7 +23,7 @@ public class AttackScript : MonoBehaviour
         backGroundCam.SetActive(true);
         forwardGroundCam.SetActive(true);
         StartCoroutine(refrsh(mult));
-        cinemachineShake.ShakeCamera(1.5f, Timer * mult);
+        cinemachineShake.ShakeCamera(1.5f);
     }
 
     IEnumerator refrsh(float mult)
@@ -31,6 +31,7 @@ public class AttackScript : MonoBehaviour
         yield return new WaitForSecondsRealtime((Timer * mult));
         backGroundCam.SetActive(false);
         forwardGroundCam.SetActive(false);
+        cinemachineShake.StopShake();
         Time.timeScale = 1;
     }
 }
