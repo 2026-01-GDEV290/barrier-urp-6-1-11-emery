@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3526886852529402446}
   - component: {fileID: 4657707246959581122}
   - component: {fileID: 7078592365228812427}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: HitParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4903,7 +4903,7 @@ GameObject:
   - component: {fileID: 6649797462435954109}
   - component: {fileID: 9043608025531739100}
   - component: {fileID: 1440736050695484953}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

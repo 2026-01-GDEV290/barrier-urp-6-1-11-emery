@@ -37,9 +37,6 @@ public class ContactGetter : MonoBehaviour
     AttackScript playerAtk;
 
     [SerializeField]
-    CinemachineShake cinemachineShake;
-
-    [SerializeField]
     List<GameObject> Decals;
 
     [SerializeField]
@@ -50,8 +47,6 @@ public class ContactGetter : MonoBehaviour
         playerSword = GameObject.FindGameObjectWithTag("PlayerSword");
 
         playerAtk = GameObject.FindGameObjectWithTag("PlayerMain").GetComponent<AttackScript>();
-
-        cinemachineShake = GameObject.FindGameObjectWithTag("Camera").GetComponent<CinemachineShake>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,14 +55,8 @@ public class ContactGetter : MonoBehaviour
         sourceHit.pitch = Random.Range(1,1.5f);
         sourceHit.Play();
 
-        AttackScript anim;
+        
 
-        if (!(playerSword.gameObject.GetComponent<AttackScript>() == null))
-        {
-            Debug.Log("got ATK scrpt");
-            anim = playerSword.gameObject.GetComponent<AttackScript>();
-            anim.stutterFrame();
-        }
 
         GameObject newDecal = Instantiate(DecalProj,transform.position,Quaternion.identity);
 
@@ -86,21 +75,26 @@ public class ContactGetter : MonoBehaviour
             foreach (MeshRenderer part in parts)
             {
                 part.enabled = false;
-                sourceBreak.pitch = Random.Range(1,1.5f);
+                sourceBreak.pitch = Random.Range(0.15f, 0.5f);
                 sourceBreak.Play();
             }
             foreach (GameObject decal in Decals)
             {
                 Destroy(decal);
             }
+            playerAtk.stutterFrame(1.5f);
             Invoke("Refresh", 3f);
+        }
+        else
+        {
+            playerAtk.stutterFrame(1f);
         }
 
         hitParticle.transform.position = Physics.ClosestPoint(playerSword.transform.position, myCollider, transform.position, transform.rotation);
 
         hitParticle.Play();
 
-        cinemachineShake.ShakeCamera(shakeIntensity, shakeTime);
+
     }
 
     void Refresh()
