@@ -18,8 +18,6 @@ public class ContactGetter : MonoBehaviour
     MeshRenderer[] parts;
 
     [SerializeField]
-    AudioSource sourceHit;
-    [SerializeField]
     AudioSource sourceBreak;
 
     [SerializeField]
@@ -52,11 +50,11 @@ public class ContactGetter : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         HP--;
-        sourceBreak.pitch = Random.Range(0.15f, 0.3f);
-        sourceHit.Play();
 
-        
-
+        if (playerAtk != null)
+        {
+            playerAtk.pitchSet(  1 + (Mathf.Abs(HP - 3) * .10f));
+        }
 
         GameObject newDecal = Instantiate(DecalProj,transform.position,Quaternion.identity);
 
@@ -106,7 +104,6 @@ public class ContactGetter : MonoBehaviour
             part.enabled = true;
 
         }
-
         HP = 3;
     }
 }
