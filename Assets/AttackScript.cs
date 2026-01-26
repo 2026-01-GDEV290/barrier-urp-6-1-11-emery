@@ -36,7 +36,7 @@ public class AttackScript : MonoBehaviour
         StartCoroutine(refrsh(mult));
         cinemachineShake.ShakeCamera(1.5f);
         AudioHit.Play();
-        AudioStab.Play();
+       // AudioStab.Play();
     }
 
 

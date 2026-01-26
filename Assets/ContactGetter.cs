@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ContactGetter : MonoBehaviour
 {
@@ -58,7 +60,9 @@ public class ContactGetter : MonoBehaviour
 
         GameObject newDecal = Instantiate(DecalProj,transform.position,Quaternion.identity);
 
-        newDecal.transform.position = Physics.ClosestPoint(playerSword.transform.position, myCollider, transform.position, transform.rotation);
+        Vector3 randomOffset = new Vector3(Random.Range(3f, 5f), Random.Range(3f, 5f), Random.Range(3f, 5f));
+
+        newDecal.transform.position = Physics.ClosestPoint(playerSword.transform.position, myCollider, transform.position, transform.rotation) + Mathf.Sign(Random.Range(-1,1)) * randomOffset;
 
         Vector3 direction = transform.position - newDecal.transform.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
