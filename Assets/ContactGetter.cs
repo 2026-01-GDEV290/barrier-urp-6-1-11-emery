@@ -60,9 +60,9 @@ public class ContactGetter : MonoBehaviour
 
         GameObject newDecal = Instantiate(DecalProj,transform.position,Quaternion.identity);
 
-        Vector3 randomOffset = new Vector3(Random.Range(3f, 5f), Random.Range(3f, 5f), Random.Range(3f, 5f));
+        Vector3 randomOffset = new Vector3(Random.Range(0f, .25f), Random.Range(0f, .25f), Random.Range(0f, .25f));
 
-        newDecal.transform.position = Physics.ClosestPoint(playerSword.transform.position, myCollider, transform.position, transform.rotation) + Mathf.Sign(Random.Range(-1,1)) * randomOffset;
+        newDecal.transform.position = Physics.ClosestPoint(playerSword.transform.position, myCollider, transform.position, transform.rotation);
 
         Vector3 direction = transform.position - newDecal.transform.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
@@ -92,7 +92,7 @@ public class ContactGetter : MonoBehaviour
             playerAtk.stutterFrame(1f);
         }
 
-        hitParticle.transform.position = Physics.ClosestPoint(playerSword.transform.position, myCollider, transform.position, transform.rotation);
+        hitParticle.transform.position = Physics.ClosestPoint(playerSword.transform.position, myCollider, transform.position, transform.rotation) + Mathf.Sign(Random.Range(-1, 1)) * randomOffset;
 
         hitParticle.Play();
 

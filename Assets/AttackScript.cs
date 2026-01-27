@@ -17,11 +17,28 @@ public class AttackScript : MonoBehaviour
     [SerializeField]
     AudioSource AudioStab;
 
+    [SerializeField]
+    Volume globaleVolume;
+    [SerializeField]
+    VolumeProfile Impact;
+    [SerializeField]
+    VolumeProfile Comic;
+
     private void Start()
     {
         cinemachineShake = GameObject.FindGameObjectWithTag("Camera").GetComponent<CinemachineShake>();
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            globaleVolume.profile = Impact;
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            globaleVolume.profile = Comic;
+        }
+    }
     public void pitchSet(float pitch)
     {
         AudioHit.pitch = pitch;
